@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+    box-sizing: border-box;
+}
+
+mat-chip {
+    box-shadow: 1px 1px 8px 2px #ccc;
+
+    &:hover:after {
+        opacity: 0;
+    }
+}
+
+.text-capitalize {
+    text-transform: capitalize !important;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mr-15 {
+    margin-right: 15px !important;
+}
+
+.mb-15 {
+    margin-bottom: 15px !important;
+}
+
+
+// Custom grid system
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.col {
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+$columns: 12; // Number of columns in the grid system
+@for $width from 1 through $columns {
+	.col-sm-#{$width} {
+        flex-basis: $width / $columns * 100%;
+    }
+}
+
+@for $width from 1 through $columns {
+    @media (min-width: 767px) {
+        .col-md-#{$width} {
+            flex-basis: $width / $columns * 100%;
+        }
+    }
+}
+
+@for $width from 1 through $columns {
+    @media (min-width: 1199px) {
+        .col-lg-#{$width} {
+            flex-basis: $width / $columns * 100%;
+        }
+    }
+}
+
+@for $width from 1 through $columns {
+    @media (min-width: 1400px) {
+        .col-xl-#{$width} {
+            flex-basis: $width / $columns * 100%;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+.movies-div {
+    min-height: calc(100vh - 164px);
+    box-sizing: border-box;
+    padding: 16px 0;
+}
+
+.form-wrapper {
+    & > .mat-form-field {
+        width: 100%;
+    }
+}
+
+.mat-card-header {
+    .mat-card-subtitle {
+        text-transform: uppercase;
+    }
+}
+
+.movie-card {
+    margin: 0 0 20px;
+    cursor: pointer;
+
+    .image-div {
+        width: 100%;
+        height: 250px;
+        max-height: 250px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('http://view.dreamstalk.ca/breeze5/images/no-photo.png');
+        background-color: #ccc;
+    }
+}
+
+.mat-select-value {
+    text-transform: capitalize !important;
+}

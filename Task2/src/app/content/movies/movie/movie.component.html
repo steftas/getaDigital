@@ -1,0 +1,25 @@
+<section class="movie-div" *ngIf="movie">
+    <div class="row">
+        <div class="col col-sm-12 col-lg-6 col-xl-4">
+            <mat-card class="movie-card">
+                <mat-card-header>                        
+                    <mat-card-title>{{movie.Title}}</mat-card-title>
+                    <mat-card-subtitle class="text-capitalize">{{movie.Type}} - {{movie.Year}}</mat-card-subtitle>
+                </mat-card-header>
+                
+                <mat-card-content>
+                    <div class="image-div" [ngStyle]="movie.Poster !== 'N/A' ? { 'background-image': 'url(' + movie.Poster + ')'} : ''"></div>
+                </mat-card-content>
+
+                <mat-card-footer>
+                    <mat-card-subtitle class="text-center">IMDB Rating: {{movie.imdbRating}}</mat-card-subtitle>
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </div>
+    
+    <div class="row">
+        <button mat-raised-button color="primary" (click)="goBack()">BACK</button>
+    </div>
+</section>
+

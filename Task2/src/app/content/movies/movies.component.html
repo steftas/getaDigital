@@ -1,0 +1,70 @@
+<div class="movies-div">
+    <div class="row mt-16">
+        <aside class="col col-sm-12 col-md-4">
+            <mat-card class="movie-card">
+                <form [formGroup]="formData" (ngSubmit)="applyFilters()" #searchForm="ngForm">
+                    <div class="form-wrapper">
+                        <mat-form-field>
+                            <mat-label>Search *</mat-label>
+                            <input matInput formControlName="searchedName" placeholder="Search *" autocomplete="off">
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="selectedType">
+                                <mat-option *ngFor="let type of moviesTypes" [value]="type" class="text-capitalize">{{type}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Year</mat-label>
+                            <input matInput type="number" formControlName="releaseYear" placeholder="Year of release" autocomplete="off">
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <button mat-raised-button color="primary" type="submit" class="mr-15 mb-15" [disabled]="!searchForm.form.valid">APPLY FILTERS</button>
+                        <button mat-raised-button (click)="resetFilters()" type="button">RESET FILTERS</button>
+                    </div>
+                </form>
+            </mat-card>
+        </aside>
+
+        <section class="col col-sm-12 col-md-8">
+            <div class="row">
+                <div class="col col-sm-12">
+                    <h5 class="text-center">Search for a movie</h5>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row" *ngIf="errorMessage">
+                <div class="col col-sm-12">
+                    <h2 class="text-center">{{errorMessage}}</h2>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!errorMessage && data.length > 0">
+                <div class="col col-sm-12 col-lg-6 col-xl-4" *ngFor="let movie of data">
+                    <mat-card class="movie-card" (click)="goToMovie(movie.imdbID)">
+                        <mat-card-header>                        
+                            <mat-card-title>{{movie.Title}}</mat-card-title>
+                            <mat-card-subtitle>{{movie.Type}} - {{movie.Year}}</mat-card-subtitle>
+                        </mat-card-header>
+                        
+                        <mat-card-content>
+                            <figure>
+                                <div class="image-div" [ngStyle]="movie.Poster !== 'N/A' ? { 'background-image': 'url(' + movie.Poster + ')'} : ''"></div>
+                            </figure>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+                <div class="col col-sm-12">
+                    <mat-paginator [length]="totalResults" [pageSize]="10" [pageSizeOptions]="[10]" (page)="pageNavigate($event)"></mat-paginator>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
